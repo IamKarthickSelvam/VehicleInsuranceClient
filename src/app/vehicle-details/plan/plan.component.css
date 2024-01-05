@@ -1,0 +1,29 @@
+.edit {
+    text-decoration: none;
+    color: #000;
+    cursor: pointer;
+}
+
+.edit:hover {
+    color: green;
+}
+
+.plan {
+    max-width: 600px;
+    margin: auto;
+
+}
+
+.covered li,
+.not-covered li {
+    margin-bottom: 10px;
+}
+
+.covered strong,
+.not-covered strong {
+    color: green;
+}
+
+.not-covered strong {
+    color: red;
+}

@@ -1,0 +1,45 @@
+<div class="container" *ngIf="!details">
+    <div class="row gap-5 py-5">
+        <div class="col-4 pt-5">
+            <h1>Vehicle/Motor Insurance</h1>
+            <p>Motor Insurance Made Easy</p>
+            <p class="pb-5">No more tedious paperwork!<br>Insure your car and bike today.</p>
+            <div class="d-flex justify-content-center mb-5 gap-5" role="group">
+                <input type="radio" class="btn-check" #Bike name="Vehicle" id="Bike" autocomplete="off" checked
+                    (click)="changeVehicleCard(Bike.id)">
+                <label class="form-check-label btn btn-outline-primary fs-2 border-0 bg-purple" for="Bike">
+                    <div class="d-flex flex-column align-items-center">
+                        <div class="bi bi-bicycle"></div>
+                        <div>Bike</div>
+                    </div>
+                </label>
+
+                <input type="radio" class="btn-check" #Car name="Vehicle" id="Car" autocomplete="off"
+                    (click)="changeVehicleCard(Car.id)">
+                <label class="form-check-label btn btn-outline-primary  fs-2 border-0" for="Car">
+                    <div class="d-flex flex-column align-items-center">
+                        <div class="bi bi-car-front"></div>
+                        <div>Car</div>
+                    </div>
+                </label>
+            </div>
+        </div>
+        <div class="col-1 card border rounded shadow-lg box-shadow " style="width: 50rem;" *ngIf="card">
+            <img src="{{vehicle.img}}" class="card-img-top" alt="..." style="height: 29rem;">
+            <div class="card-body">
+                <h5 class="card-title fw-bold">{{vehicle.type}} Insurance</h5>
+                <p class="card-text">Get started by entering your {{vehicle.type}}'s Registration number below.</p>
+                <form (ngSubmit)="changeView()">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" name="regNo" placeholder="Ex. TN03J4483"
+                            [(ngModel)]="vehicle.regNo" autocomplete="off">
+                        <button class="btn btn-primary" (click)="demoNumber()">Demo Number</button>
+                        <button class="btn btn-primary" type="submit">Get Quote</button>
+                    </div>
+                </form>
+                <p class="text-danger fs-6" *ngIf="regNoFlag">Please enter a valid Registration Number</p>
+                <p class="fs-6" style="text-align: end; margin-bottom: 0; padding-bottom: 0;" *ngIf="demoFlag">You will be redirected <span style="color: #635bff;">shortly. . .</span></p>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+<div class="container-fluid">
+    <form [formGroup]="persDetailsForm" (ngSubmit)="savePersDetails()">
+        <div class="row container border bg-light rounded mb-3 shadow-lg bg-body rounded-4">
+            <div class="fs-5 my-3">Enter personal details</div>
+            <div class="mb-3">
+                <label for="fullName" class="form-label fw-light">Full Name</label>
+                <input type="text" class="border form-control" formControlName="fullName" autocomplete="disabled">
+                <span *ngIf="fullName && fullName.invalid && fullName.touched" class="error">Required</span>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label fw-light">Email</label>
+                <input type="email" class="border form-control" formControlName="email" autocomplete="disabled">
+                <span *ngIf="email && email.invalid && email.touched" class="error">Invalid email format</span>
+            </div>
+            <div class="mb-3">
+                <label for="mobNo" class="form-label fw-light">Mobile No</label>
+                <input type="text" maxlength="10" class="border form-control" formControlName="mobNo" autocomplete="disabled">
+                <span *ngIf="mobNo && mobNo.invalid && mobNo.touched" class="error">Invalid number - Length should be 10 numbers</span>
+            </div>
+            <div class="mb-3">
+                <label for="pincode" class="form-label fw-light">Pincode</label>
+                <input type="text" maxlength="6" class="border form-control" formControlName="pincode" autocomplete="disabled">
+                <span *ngIf="pincode && pincode.invalid && pincode.touched" class="error">Invalid Pincode - Length should be 6 numbers</span>
+            </div>
+            <p class="fs-6 fw-light">By proceeding, you agree to the <a href="https://www.meity.gov.in/writereaddata/files/Digital%20Personal%20Data%20Protection%20Act%202023.pdf" target="_blank">Terms & Conditions</a></p>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="container">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="fs-4">{{vehicle.finalPremium | currency:'INR'}} <span class="fs-6">+ GST</span></div>
+                        <!-- <button type="submit" class="btn btn-success" [disabled]="persDetailsForm.invalid">Continue</button> -->
+                        <button type="submit" class="btn btn-success">Continue</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

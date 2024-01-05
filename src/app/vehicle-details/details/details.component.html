@@ -1,0 +1,39 @@
+<div class="container-fluid">
+    <div class="row container border bg-light rounded mb-3 shadow-lg bg-body rounded-4 justify-content-center">
+        <div class="fs-5 my-3">Enter your {{vehicle.type}} details</div>
+        <form autocomplete="off">
+            <div class="mb-3">
+                <label for="model" class="form-label fw-light">Make & Model</label>
+                <!-- <input type="text" class="form-control" name="model" [(ngModel)]="vehicle.model"> -->
+                <select class="form-select" name="model" [(ngModel)]="vehicle.model">
+                    <option selected>{{vehicle.model}}</option>
+                    <option *ngFor="let model of vehicleModels">{{model}}</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="year" class="form-label fw-light ">Registration Date</label>
+                <div class="input-group">
+                    <input class="form-control" placeholder="yyyy-mm-dd" name="year" [(ngModel)]="vehicle.year"
+                        ngbDatepicker #d="ngbDatepicker" />
+                    <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d.toggle()"
+                        type="button"></button>
+                </div>
+            </div>
+            <div class="mb-4">
+                <label class="form-label fw-light" for="status">Policy Status</label>
+                <!-- <input type="text" class="form-control" name="status" [(ngModel)]="vehicle.status"> -->
+                <select class="form-select" name="status" [(ngModel)]="vehicle.status">
+                    <option selected></option>
+                    <option *ngFor="let status of vehicleStatus">{{status}}</option>
+                </select>
+            </div>
+        </form>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="container d-flex justify-content-end">
+                <button type="submit" class="btn btn-success" (click)="updateDetails()">View Plans</button>
+            </div>
+        </div>
+    </div>
+</div>

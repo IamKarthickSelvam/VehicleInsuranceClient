@@ -1,0 +1,25 @@
+.custom-button {
+    display: inline-block;
+    color: #635bff;
+    
+}
+
+.custom-button:hover {
+    cursor: pointer;
+}
+
+.custom-button:after {
+    display: block;
+    content: '';
+    border-bottom: solid 3px #635bff;
+    transform: scaleX(0);
+    transition: transform 300ms ease-in-out;
+}
+
+.custom-button:hover:after {
+    transform: scaleX(1);
+}
+
+.border-color {
+    border-color: #635bff !important;
+}

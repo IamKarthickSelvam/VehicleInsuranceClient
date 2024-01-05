@@ -1,0 +1,152 @@
+<div class="container border bg-light mb-3 shadow-lg bg-body rounded-4">
+    <div class="container mb-3">
+        <div class="row">
+            <div class="fs-5 my-3">Summary of {{vehicle.type}} Details</div>
+            <div class="mb-3 col">
+                <label for="fullName" class="fw-light">Bike</label>
+                <div>{{vehicle.model}}</div>
+            </div>
+            <div class="mb-3 col">
+                <label for="email" class="fw-light">Reg. no.</label>
+                <div>{{vehicle.regNo}}</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="mb-3 col">
+                <label for="mobNo" class="fw-light">Bike Owner</label>
+                <div>{{vehicle.fullName}}</div>
+            </div>
+            <div class="mb-3 col">
+                <label for="pincode"class="fw-light">Total Premium</label>
+                <div>{{vehicle.finalPremium | currency:'INR'}}</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="mb-3 col text-center">
+                <div class="d-flex-column justify-content-between">
+                    <label for="mobNo" class="mb-3">Policy Starts</label>
+                    <div class="d-flex justify-content-center">
+                        <div class="border rounded col-4">
+                            <div class="fw-bold" class="start">{{startYear}}</div>
+                            <hr class="my-0">
+                            <div class="fw-bold fs-1" style="color: green;">{{Date}}</div>
+                            <div class="fw-bold fs-6" style="color: green;">{{Month}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3 col text-center">
+                <div class="d-flex-column justify-content-between">
+                    <label for="mobNo" class="mb-3">Policy Expires</label>
+                    <div class="d-flex justify-content-center">
+                        <div class="border rounded col-4">
+                            <div class="fw-bold" class="end">{{endYear}}</div>
+                            <hr class="my-0">
+                            <div class="fw-bold fs-1" style="color: red;">{{Date}}</div>
+                            <div class="fw-bold fs-6" style="color: red;">{{Month}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container border bg-light mb-3 shadow-lg bg-body rounded-4">
+    <div class="container">
+        <div class="row border-bottom border-opacity-50">
+            <div class="fs-5 my-3">Select payment method</div>
+        </div>
+        <div class="row">
+            <div class="col-2">
+                <div class="row py-3 border-bottom border-end justify-content-center select-cursor"
+                    [ngClass]="{'fw-bold border-end-0': this.payment.credit}"
+                    (click)="setPaymentScreen($event, 'credit')">Credit card</div>
+                <div class="row py-3 border-bottom border-end justify-content-center select-cursor"
+                    [ngClass]="{'fw-bold border-end-0': this.payment.upi}" (click)="setPaymentScreen($event, 'upi')">UPI
+                </div>
+                <div class="row py-3 border-bottom border-end justify-content-center select-cursor"
+                    [ngClass]="{'fw-bold border-end-0': this.payment.netbank}"
+                    (click)="setPaymentScreen($event, 'netbank')">Net Banking</div>
+                <div class="row py-3 border-bottom-0 border-end justify-content-center select-cursor"
+                    [ngClass]="{'fw-bold border-end-0': this.payment.debit}"
+                    (click)="setPaymentScreen($event, 'debit')">Debit card</div>
+            </div>
+            <div class="col container fs-6">
+                <form *ngIf="payment.credit || payment.debit">
+                    <div class="mb-1 row">
+                        <label for="cardNumber"
+                            class="form-label d-flex justify-content-between align-items-center mb-0 fw-light">Card Number
+                            <div>
+                                <img src={{this.images.mastercard}}>
+                                <img src={{this.images.visa}}>
+                                <img src={{this.images.rupay}}>
+                            </div>
+                        </label>
+                        <div class="input-group">
+                            <input type="text" name="cardNumber" class="form-control"
+                                placeholder="Ex. 2023 4632 4198 1975">
+                            <span class="input-group-text" id="cardicon">ꝏ</span>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-start gap-5 mb-3">
+                        <div>
+                            <label for="Expires" class="form-label fw-light">Expires On</label>
+                            <div class="input-group gap-3">
+                                <input type="text" name="Expires" class="form-control rounded col-1" placeholder="12">
+                                <input type="text" name="Expires1" class="form-control rounded col-4"
+                                    placeholder="2023">
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <label for="CVV" class="form-label fw-light">CVV</label>
+                            <div class="input-group">
+                                <input type="text" name="CVV" class="form-control" placeholder="* * *">
+                                <span class="input-group-text" id="cardicon">?</span>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <form *ngIf="payment.upi">
+                    <div class="row">
+                        <label for="upiid" class="form-label d-flex justify-content-between align-items-center mb-0">VPA
+                            address / UPI ID
+                            <div>
+                                <img src={{this.images.gpay}}>
+                                <img src={{this.images.paytm}}>
+                                <img src={{this.images.paypal}}>
+                                <img src={{this.images.apay}}>
+                            </div>
+                        </label>
+                        <div class="input-group mb-1">
+                            <input type="text" name="upiid" class="form-control" placeholder="Ex. 2023 4632 4198 1975">
+                            <span class="input-group-text" id="cardicon">@okaxis.com</span>
+                        </div>
+                        <p class="fs-6 fw-light">Click the link here to know where to get your
+                            <a href="https://cleartax.in/s/vpa-virtual-payment-address" target="_none">VPA address</a>.
+                        </p>
+                    </div>
+                </form>
+                <form *ngIf="payment.netbank">
+                    <div class="mb-3 row">
+                        <label for="upiid" class="form-label mt-3">Username / Customer ID</label>
+                        <div class="input-group mb-1">
+                            <input type="text" name="upiid" class="form-control">
+                        </div>
+                        <label for="upiid" class="form-label">Password</label>
+                        <div class="input-group mb-1">
+                            <input type="password" name="upiid" class="form-control">
+                        </div>
+                    </div>
+                </form>
+                <div class="row pb-0">
+                    <div class="btn-group gap-3" role="group">
+                        <button type="button" class="btn btn-success rounded" routerLink="/success">Confirm & Pay
+                            {{vehicle.finalPremium |
+                            currency:'INR'}}</button>
+                        <button type="button" class="btn btn-outline-secondary rounded">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

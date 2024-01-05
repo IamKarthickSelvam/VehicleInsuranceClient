@@ -1,0 +1,30 @@
+.dateborder {
+    border-color: green;
+    color: green;
+}
+
+.start {
+    background-color: green;
+    color: white;
+    font-weight: bold;
+    font-size: larger;
+}
+
+.end {
+    background-color: red;
+    color: white;
+    font-weight: bold;
+    font-size: larger;
+}
+
+.select-cursor {
+    cursor: pointer;
+    /* background-color: grey;
+    opacity: 50%; */
+}
+
+.img-size {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}

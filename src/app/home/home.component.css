@@ -1,0 +1,32 @@
+h1 {
+    font-weight: 200;
+    font-size: 4rem;
+    color: #635bff;
+}
+
+p {
+    font-weight: 400;
+    font-size: 1.5rem;
+}
+
+.h-80 {
+    height: 80%;
+}
+
+.btn,
+.btn-bd-primary {
+    --bs-btn-font-weight: 600;
+    --bs-btn-color: #635bff;
+    --bs-btn-bg: #f7fbff;
+    --bs-btn-hover-bg: var(--bs-btn-color);
+    --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+    /* --bs-btn-border-color: #635bff; */
+    /* --bs-btn-border-radius: .5rem; */
+    /* --bs-btn-hover-color: #fff;
+    /* --bs-btn-hover-color: #635bff; */
+    --bs-btn-hover-border-color: var(--bs-btn-color);
+    /* --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb); */
+    --bs-btn-active-color: var(--bs-btn-bg);
+    --bs-btn-active-bg: var(--bs-btn-color);
+    --bs-btn-active-border-color: var(--bs-btn-color);
+}

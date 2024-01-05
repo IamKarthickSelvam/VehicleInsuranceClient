@@ -1,0 +1,142 @@
+<div class="container-fluid">
+    <div class="row container border bg-light rounded mb-3 shadow-lg bg-body rounded-4 justify-content-center">
+        <div class="fs-5 my-3">Select plan</div>
+        <div class="row mb-3">
+            <div class="col px-0">
+                <div class="p-3 border bg-light rounded">
+                    <div class="container px-0">
+                        <div class="row justify-content-between">
+                            <div class="col-5 fw-bold">
+                                {{vehicle.model}}
+                            </div>
+                            <div class="col-3 text-end">
+                                <a class="nav-link active" routerLink="/vehicle-details/details" class="edit">Edit</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fw-light">{{vehicle.status}} . Year: {{vehicle.regYear}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="mb-3">Select plan tenure</div>
+        <div class="container d-flex justify-content-between mb-3 btn-group" role="group" gap="5">
+            <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked
+                (click)="onYearChange($event, 1)">
+            <label class="btn btn-outline-success me-2 rounded" for="btnradio1">1 Year</label>
+
+            <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off"
+                (click)="onYearChange($event, 2)">
+            <label class="btn btn-outline-success me-2 rounded" for="btnradio2">2 Year</label>
+
+            <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off"
+                (click)="onYearChange($event, 3)">
+            <label class="btn btn-outline-success me-2 rounded" for="btnradio3">3 Year</label>
+        </div>
+        <div class="d-grid gap-2 mb-3">
+            <div class="btn-group-vertical" role="group">
+                <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio1" autocomplete="off" checked
+                    (click)="onInsTypeChange($event, 'CP')">
+                <label class="btn btn-outline-success mb-3 rounded text-start" for="vbtn-radio1">
+                    <div class="container mb-3">
+                        <div class="text-start">Comprehensive plan</div>
+                    </div>
+                    <p class="fs-6">✔ Covers damages to your vehicle</p>
+                    <p class="fs-6 mb-3">✔ Covers damages to other's vehicle and property</p>
+                    <div class="fs-6">
+                        <a href="" type="button" data-bs-toggle="modal" data-bs-target="#Modal" (click)="modalView('Comp')">See Benefits</a>
+                    </div>
+                    <hr>
+                    <p class="mb-3 text-dark fw-bold">{{compPremium | currency:'INR'}}</p>
+                </label>
+                <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio2" autocomplete="off"
+                    (click)="onInsTypeChange($event, 'TP')">
+                <label class="btn btn-outline-success rounded text-start" for="vbtn-radio2">
+                    <div class="container mb-3">
+                        <div class="text-start">Third party plan</div>
+                    </div>
+                    <p class="fs-6">❌ Covers damages to your vehicle</p>
+                    <p class="fs-6 mb-3">✔ Covers damages to other's vehicle and property</p>
+                    <div class="fs-6">
+                        <a href="" type="button" data-bs-toggle="modal" data-bs-target="#Modal" (click)="modalView('Third')">See Benefits</a>
+                    </div>
+                    <hr>
+                    <p class="mb-3 text-dark fw-bold">{{thirdPremium | currency:'INR'}}</p>
+                </label>
+            </div>
+        </div>
+        <div class="row mb-4" *ngIf="idvEditor">
+            <div class="col px-0">
+                <div class="p-3 border bg-light rounded">
+                    <div class="container px-0">
+                        <div class="d-flex justify-content-between">
+                            <div class="col-5 bi bi-bicycle"> IDV (Insured value)</div>
+                            <div class="col-3 text-end">{{idvValue | currency:'INR'}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="container d-flex justify-content-between align-items-center">
+                <div class="fs-4">{{vehicle.finalPremium | currency:'INR'}} <span class="fs-6">+ GST</span></div>
+                <button type="submit" class="btn btn-success" (click)="changeView()">Continue</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="Modal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">{{modalLabel}} Plan</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="plan">
+                    <ng-container *ngIf="compModal">
+                        <p>Covers damage to your vehicle, other vehicle & property.</p>
+                        
+                        <h3>What's covered</h3>
+                        <ul class="covered">
+                            <li><strong>Accidents</strong>: Covers repair/replacement costs if your vehicle is damaged in an accident</li>
+                            <li><strong>Theft</strong>: If your vehicle is stolen, we will pay you the value of your vehicle as per your policy</li>
+                            <li><strong>Third-party injury/death</strong>: Covers death/injuries caused to third party individuals during accident</li>
+                            <!-- Add more items as needed -->
+                        </ul>
+                        
+                        <h3>What's not covered</h3>
+                        <ul class="not-covered">
+                            <li><strong>Non-accident damages</strong>: Excludes coverage for natural wear and tear of parts like tyres, tubes, and engine</li>
+                            <li><strong>Illegal driving</strong>: Excludes coverage for violation of traffic laws, such as driving without a valid license or driving under the influence of drugs, alcohol, etc.</li>
+                            <!-- Add more items as needed -->
+                        </ul>
+                    </ng-container>
+                    <ng-container *ngIf="!compModal">
+                        <p>Covers damage only to others vehicle & property.</p>
+                    
+                        <h3>What's covered</h3>
+                        <ul class="covered">
+                            <li><strong>Third-party injury/death</strong>: Covers death/injuries caused to third party individuals during accident</li>
+                            <li><strong>Third-party property</strong>: Covers death/injuries caused to third party properties during accident</li>
+                            <!-- Add more items as needed -->
+                        </ul>
+                    
+                        <h3>What's not covered</h3>
+                        <ul class="not-covered">
+                            <li><strong>Own vehicle damages</strong>: Damages to your own vehicle are not covered</li>
+                            <li><strong>Illegal driving</strong>: This refers to any violation of traffic laws, such as driving without a valid license or driving under the influence of
+                            drugs, alcohol, etc.</li>
+                            <!-- Add more items as needed -->
+                        </ul>
+                    </ng-container>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
