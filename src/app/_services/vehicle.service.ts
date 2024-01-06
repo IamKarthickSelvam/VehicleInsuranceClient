@@ -11,7 +11,7 @@ export class VehicleService {
   vehicleDetails$ = this.vehicleDetails.asObservable();
   vehicle: any;
   vehicleList: string[] = [];
-  baseUrl: string = 'https://' + 'localhost:7224' + '/api/Vehicle';
+  baseUrl: string = 'https://vehicleinsuranceapi.azurewebsites.net/api/Vehicle';
 
   constructor(private http: HttpClient) { }
 
